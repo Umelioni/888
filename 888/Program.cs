@@ -9,7 +9,7 @@ namespace _888
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(3);
+            Console.WriteLine(2);
         }
     }
 }
