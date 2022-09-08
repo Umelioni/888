@@ -1,0 +1,1 @@
+![image](https://github.com/Umelioni/888/Screenshots/Lab2.png)
