@@ -111,7 +111,7 @@ namespace Lab2
             this.age = age;
             this.date = DateTime.Now;
         }
-         
+        
         public void PrintInfo() {
             Console.WriteLine("=======================");
             Console.WriteLine("Login: " + login);
