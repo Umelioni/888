@@ -12,12 +12,12 @@ namespace Lab2
         {
             Console.WriteLine("==== 1th ====");
             Address address = new Address();
-            address.index = 28009;
-            address.country = "Spain";
-            address.city = "Madrid";
-            address.street = "Goya";
-            address.house = "3A";
-            address.apartment = 5;
+            address.Index = 28009;
+            address.Country = "Spain";
+            address.City = "Madrid";
+            address.Street = "Goya";
+            address.House = "3A";
+            address.Apartment = 5;
             address.Print();
 
             Console.WriteLine("==== 2th ====");
@@ -27,6 +27,8 @@ namespace Lab2
 
             Console.WriteLine("==== 3th ====");
             Employee tom = new Employee("Tom", "Brown");
+            tom.Experience = 3;
+            tom.Position = Employee.PositionType.Middle;
             tom.Print();
 
             Console.WriteLine("==== 4th ====");
@@ -37,10 +39,80 @@ namespace Lab2
     }
     class Address
     {
-        public int index, apartment;
-        public string country, city, street, house;
+        private int _index, _apartment;
+        private string _country, _city, _street, _house;
 
-        public void Print() => Console.WriteLine($"{index} {country}, {city}, Cl. {street} {house}, {apartment}");
+        public int Index
+        {
+            get
+            {
+                return _index;
+            }
+            set
+            {
+                if (value > 0)
+                    _index = value;
+                else throw new ArgumentException("Value < or == 0");
+            }
+        }
+        public int Apartment
+        {
+            get
+            {
+                return _apartment;
+            }
+            set
+            {
+                _apartment = value;
+            }
+        }
+
+        public string Country
+        {
+            get
+            {
+                return _country;
+            }
+            set
+            {
+                _country = value;
+            }
+        }
+        public string City
+        {
+            get
+            {
+                return _city;
+            }
+            set
+            {
+                _city = value;
+            }
+        }
+        public string Street
+        {
+            get
+            {
+                return _street;
+            }
+            set
+            {
+                _street = value;
+            }
+        }
+        public string House
+        {
+            get
+            {
+                return _house;
+            }
+            set
+            {
+                _house = value;
+            }
+        }
+
+        public void Print() => Console.WriteLine($"{_index} {_country}, {_city}, Cl. {_street} {_house}, {_apartment}");
     }
     class Converter
     {
@@ -64,44 +136,104 @@ namespace Lab2
 
     class Employee
     {
+        const float startSalary = 10354.45f;
 
-        private string name;
-        private string surname;
-        private int experience;
-        private Position position;
-        private float salary = 10354.45f;
-        enum Position
+        private string _name;
+        private string _surname;
+        private int _experience = 0;
+        private PositionType _position = PositionType.Null;
+        private float _salary = startSalary;
+        private bool w_UpdateSalary = true;
+        public enum PositionType
         {
-            Junior = 1,
+            Null,
+            Junior,
             Middle,
             Senior
         }
+
+        public string Name
+        {
+            get => _name;
+            set => _name = value;
+        }
+        public string Surname
+        {
+            get => _surname;
+            set => _surname = value;
+        }
+
+        public PositionType Position
+        {
+            get
+            {
+                return _position;
+            }
+            set
+            {
+                _position = value;
+                if (w_UpdateSalary)
+                UpdateSalary();
+            }
+        }
+        public int Experience
+        {
+            get
+            {
+                return _experience;
+            }
+            set
+            {
+                if (value > 0)
+                    _experience = value;
+                else throw new ArgumentException("Experience < or == 0");
+                if (w_UpdateSalary)
+                    UpdateSalary();
+            }
+        }
+        public float Salary
+        {
+            get
+            {
+                return _salary;
+            }
+            set
+            {
+                _salary = value;
+                w_UpdateSalary = false;
+            }
+        }
+
+        void UpdateSalary()
+        {
+            this._salary = startSalary * (float)_position * (1.0f + (float)_experience / 10.0f);
+        }
         public Employee(string name, string surname)    
         {
-            this.name = name;
-            this.surname = surname;
-            Random random = new Random();
-            this.position = (Position)random.Next(1, 3);
-            this.experience = random.Next((int)position-1, (int)position * 5); 
-            this.salary = salary * (float)position * (1.0f + (float)experience / 10.0f);
+            this._name = name;
+            this._surname = surname;
         }
 
         public void Print()
         {
             Console.WriteLine("=======================");
-            Console.WriteLine("Name: " + name);
-            Console.WriteLine("Surname: " + surname);
-            Console.WriteLine("Position: " + Enum.GetName(typeof(Position), position));
-            Console.WriteLine("Experience: " + experience);
-            Console.WriteLine("Salary: " + salary);
+            Console.WriteLine("Name: " + _name);
+            Console.WriteLine("Surname: " + _surname);
+            Console.WriteLine("Position: " + Enum.GetName(typeof(PositionType), _position));
+            Console.WriteLine("Experience: " + _experience);
+            Console.WriteLine("Salary: " + _salary);
             Console.WriteLine("=======================");
         }
     }
     class User
     {
-        string login, name, surname;
-        int age;
-        DateTime date;
+        public string login, name, surname;
+        public int age;
+        DateTime creationDate;
+
+        public DateTime CreationDate {
+            get => creationDate;
+        }
 
         public User(string login, string name, string surname, int age)
         {
@@ -109,16 +241,16 @@ namespace Lab2
             this.name = name;
             this.surname = surname;
             this.age = age;
-            this.date = DateTime.Now;
+            this.creationDate = DateTime.Now;
         }
-        
+
         public void PrintInfo() {
             Console.WriteLine("=======================");
             Console.WriteLine("Login: " + login);
             Console.WriteLine("Name: " + name);
             Console.WriteLine("Surname: " + surname);
             Console.WriteLine("Age: " + age);
-            Console.WriteLine("Creation Date: " + date.ToString());
+            Console.WriteLine("Creation Date: " + creationDate.ToString());
             Console.WriteLine("=======================");
         }
     }
