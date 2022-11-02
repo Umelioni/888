@@ -1,4 +1,4 @@
-
+﻿
 ## Лабораторні роботи
 
 - [Лабораторна робота 2](https://github.com/Umelioni/888/tree/develop/Lab2)
@@ -8,3 +8,6 @@
 - [Лабораторна робота 5, завдання 1](https://github.com/Umelioni/888/tree/develop/Lab5_1)
 - [Лабораторна робота 5, завдання 2](https://github.com/Umelioni/888/tree/develop/Lab5_1)
 - [Лабораторна робота 5, завдання 3 (Notepad)](https://github.com/Umelioni/888/tree/develop/Lab5_Notepad)
+- [Лабораторна робота 6](https://github.com/Umelioni/888/tree/develop/Lab6)
+
+![image](https://media.npr.org/assets/img/2021/08/11/gettyimages-1279899488_wide-f3860ceb0ef19643c335cb34df3fa1de166e2761-s1100-c50.jpg)
